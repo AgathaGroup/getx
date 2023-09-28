@@ -112,7 +112,8 @@ class ParseRouteTree {
     if (treeBranch.isNotEmpty) {
       //route is found, do further parsing to get nested query params
       final lastRoute = treeBranch.last;
-      final parsedParams = _parseParams(name, lastRoute.value.path);
+      // @Note(Luca): Applying this fix https://github.com/jonataslaw/getx/issues/1129
+      final parsedParams = _parseParams(uri.path, lastRoute.value.path);
       if (parsedParams.isNotEmpty) {
         params.addAll(parsedParams);
       }
